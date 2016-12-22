@@ -1,0 +1,28 @@
+2015-02-13 13:50:45,970 - logger - INFO - hello
+
+2015-02-13 13:50:45,970 - logger - DEBUG - debug message
+2015-02-13 13:50:45,970 - logger - INFO - info message
+2015-02-13 13:50:45,970 - logger - WARNING - warn message
+2015-02-13 13:50:45,970 - logger - ERROR - error message
+2015-02-13 13:50:45,970 - logger - CRITICAL - critical message
+2015-02-13 13:50:46,970 - logger - INFO - hello
+
+2015-02-13 13:50:46,970 - logger - DEBUG - debug message
+2015-02-13 13:50:46,970 - logger - INFO - info message
+2015-02-13 13:50:46,970 - logger - WARNING - warn message
+2015-02-13 13:50:46,970 - logger - ERROR - error message
+2015-02-13 13:50:46,970 - logger - CRITICAL - critical message
+2015-02-13 13:51:49,990 - test1 - INFO - hello
+
+2015-02-13 13:51:49,990 - test1 - DEBUG - debug message
+2015-02-13 13:51:49,990 - test1 - INFO - info message
+2015-02-13 13:51:49,990 - test1 - WARNING - warn message
+2015-02-13 13:51:49,990 - test1 - ERROR - error message
+2015-02-13 13:51:49,990 - test1 - CRITICAL - critical message
+2015-02-13 13:51:50,990 - test1 - INFO - hello
+
+2015-02-13 13:51:50,990 - test1 - DEBUG - debug message
+2015-02-13 13:51:50,990 - test1 - INFO - info message
+2015-02-13 13:51:50,990 - test1 - WARNING - warn message
+2015-02-13 13:51:50,990 - test1 - ERROR - error message
+2015-02-13 13:51:50,990 - test1 - CRITICAL - critical message
