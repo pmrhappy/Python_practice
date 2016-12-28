@@ -24,9 +24,17 @@ socket = context.socket(zmq.SUB)
 socket.connect ("tcp://127.0.0.1:5566")
 topicfilter = ""
 socket.setsockopt_string(zmq.SUBSCRIBE, topicfilter)
-#socket.send_string('hello')
+
+poller = zmq.Poller()
+poller.register(socket, zmq.POLLIN)
+
+
 while True:
-    print (socket.recv_string())
-    #msg = input("msg: ")
-    #socket.send_string(msg)
+    if poller.poll(2*1000): # 10s timeout in milliseconds
+        msg = socket.recv_string()
+        print (msg)
+    else:
+        print("waiting for message...")
+    
+
     
