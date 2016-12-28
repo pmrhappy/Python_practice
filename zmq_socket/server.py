@@ -1,5 +1,5 @@
 import zmq
-import sys
+import sys, time
 
 '''context=zmq.Context()
 socket = context.socket(zmq.REQ)
@@ -21,11 +21,18 @@ c=25
 context = zmq.Context()
 
 socket = context.socket(zmq.PUB)
-socket.bind ("tcp://127.0.0.1:5568")
-
+socket.bind ("tcp://127.0.0.1:5566")
+time.sleep(1)
+socket.send_string("reload")
 while True:
+    msg = input("message >> ")
+    socket.send_string(msg)
+'''for trail in range(3):
     #msg=socket.recv()
     #print(msg)
     reply = input("reply:")
-    socket.send_string(reply)
+    socket.send_string("reload")
+    socket.send_string("reload")
+    print("time: ", trail)
+    time.sleep(3)'''
 

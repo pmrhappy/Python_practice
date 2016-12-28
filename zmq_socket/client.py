@@ -21,7 +21,7 @@ while True:
 context = zmq.Context()
 
 socket = context.socket(zmq.SUB)
-socket.connect ("tcp://127.0.0.1:5568")
+socket.connect ("tcp://127.0.0.1:5566")
 topicfilter = ""
 socket.setsockopt_string(zmq.SUBSCRIBE, topicfilter)
 #socket.send_string('hello')
