@@ -1,8 +1,16 @@
 import traceback
+import pickle
 
 if __name__ == '__main__':
     try:
-        file = open("123.txt", "r") # FileNotFoundError
+        a=15
+        file = open("new.txt", "ab+") # FileNotFoundError
+        p = pickle.load(file) # EOFError: Ran out of input
         f2 # NameError
-    except FileNotFoundError as err:
-        print("catch!! : ", err.__str__)
+    except Exception as err:# FileNotFoundError as err:
+        print("catch!! : ", type(err))
+        print("a: ",a)
+        if type(err) is EOFError:
+            print("yes!!")
+        else:
+            print("no!!")
