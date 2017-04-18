@@ -7,6 +7,7 @@ import configparser
 import base64
 import datetime
 import traceback
+from fuzzywuzzy import fuzz
 
 def get_setting_params(setting_file_path):
     config_parser = configparser.RawConfigParser()
@@ -14,6 +15,30 @@ def get_setting_params(setting_file_path):
     config_parser.read("setting.ini")
     return config_parser._sections['basic']['f1'], config_parser._sections['basic']['f2'], config_parser._sections['basic']['f3']
 
+def strip_string_list(token, str_list):
+    for s in range(len(str_list)):
+        str_list[s] = str_list[s].split(token)[0]
+    return str_list
+
+def get_new_books_set_diff(result, last_result):
+    last_result = strip_string_list(" /", last_result)
+    result = strip_string_list(" /", result)
+    new_books = list(set(result) - set(last_result))
+    return new_books
+
+def get_new_books_fuzzy(result, last_result):
+    new_books = []
+    for each_new_book in result:
+        for b in range(len(last_result)):
+            if fuzz.ratio(each_new_book.strip(), last_result[b].strip()) >= 95:
+                break
+            elif b == len(last_result)-1:
+                print(each_new_book, "\n", last_result[b])
+                print("fuzz: ", fuzz.ratio(each_new_book, last_result[b]), "\n")
+                new_books.append(each_new_book)
+    return new_books
+        
+    
 if __name__ == '__main__':
     while True:
         try:
@@ -57,7 +82,9 @@ if __name__ == '__main__':
                 for each_book_name in result:
                     result_file.write(each_book_name + "\n")
                     
-            new_books = list(set(result) - set(last_result))
+            #new_books = get_new_books_set_diff(result, last_result)
+            new_books = get_new_books_fuzzy(result, last_result)
+            
             if len(new_books) > 0:
                 new_books_list_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "new_" + str(datetime.datetime.now().time()).replace(':', '_') + ".txt")
                 with open(new_books_list_file_path, "w") as new_file:
